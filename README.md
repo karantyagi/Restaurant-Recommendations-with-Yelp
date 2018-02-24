@@ -78,5 +78,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Thank you to UC Davis Mentors:
 * [Professor Sara Arunagiri](https://www.ccis.northeastern.edu/people/sara-arunagiri/) 
-* Arpti Rawat
+* Arpit Rawat
+
   in guiding our project development during the Spring 2018.
