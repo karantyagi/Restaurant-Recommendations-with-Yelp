@@ -4,7 +4,15 @@
 
 [![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
 
+[![PyPI](https://img.shields.io/badge/python-3.6-blue.svg)]()
 
+[![PyPI version](https://badge.fury.io/py/numpy.svg)](https://badge.fury.io/py/numpy)
+
+[![PyPI version](https://badge.fury.io/py/pandas.svg)](https://badge.fury.io/py/pandas)
+
+[![PyPI version](https://badge.fury.io/py/statsmodels.svg)](https://badge.fury.io/py/statsmodels)
+
+[![PyPI version](https://badge.fury.io/py/scikit-learn.svg)](https://badge.fury.io/py/scikit-learn)
 
 To install all dependencies: `$ pip install -e .`
 
