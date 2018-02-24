@@ -4,7 +4,7 @@
 
 [![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
 
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/badges/shields.svg)]()
+
 
 To install all dependencies: `$ pip install -e .`
 
