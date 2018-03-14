@@ -1,15 +1,14 @@
 
 ### Code for Exploratory analysis and Data preprocessing
 
-### How to run ? #####
+## TO RUN THE PROGRAM:
+
 # Keep review.json in same directory and run the command:
 # $ python analyze_review.py "review.json"
 
-
-
+################################################################################
 '''
  REVIEW
-
 {
   'business_id':        string, 22 character business id, maps to business in business.json
   'review_id':          string, 22 character unique review id
@@ -21,12 +20,9 @@
   'funny':              integer
   'cool':               integer
 }
-
 '''
-
 ################################################################################
-
-# Loading nscessary libraries
+# Loading necessary libraries
 
 import sys
 import json
@@ -40,19 +36,20 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import matplotlib.patches as mpatches
-
+################################################################################
 r = [] # valid restaurant business ids
+       # Valid business-ids are Catergoy :Restaurants, City : Las Vegas
+
 ifilename = sys.argv[1]
 ofilename1 = "reviews_restaurants.csv"
 ofilename2 = "reviews_restaurants_text.csv"
 
 flag = 200000         # No. of lines to be loaded
                      # max no. of instances :5261669
-
 ################################################################################
 
 # Function to load all valid restaurant business_ids
-# Valid business-ids are Catergoy :Reastaurants, City : Las Vegas
+# Valid business-ids are Catergoy :Restaurants, City : Las Vegas
 
 def load_restrnt(filename):
     global r

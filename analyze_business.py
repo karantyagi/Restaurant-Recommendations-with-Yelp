@@ -1,14 +1,14 @@
 
 ### Code for Exploratory analysis and Data preprocessing
 
-### How to run ? #####
+## TO RUN THE PROGRAM:
+
 # Keep business.json in same directory and run the command:
 # $ python analyze_business.py "business.json"
 
-
+################################################################################
 '''
  BUSINESS
-
 {
   'business_id':            (encrypted business id),
   'name':                   (business name),
@@ -23,36 +23,64 @@
   'categories':             [(localized category names)]
   'open':                   1/0 (corresponds to permanently closed, not business hours),
 }
-
 '''
+################################################################################
+# Loading necessary libraries
 
-import time
 import sys
 import json
 import csv
 import pprint
-import numpy as np
-import pandas as pd
 from tabulate import tabulate
+from tqdm import tqdm
 from fig import *
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
+import matplotlib.patches as mpatches
+################################################################################
+restaurants = []  # list to collect valid restaurant business ids
 
-flag = 175000 # max => 174567
-restaurants = []
-
-start_time = time.time()
-print(" --- START TIME ---\n")
+flag = 174599          # No. of lines to be loaded
+                      # max no. of instances : 174567
 
 ifilename = sys.argv[1]
-try:
- ofilename = sys.argv[2]
-except:
- ofilename = ifilename + ".csv"
+ofilename = "business_full.csv"
+###############################################################################
 
-# LOAD DATA
-# loading line by line
+### LOAD ALL DATA AT ONCE
+
+''' code for complete dataset
+json_lines = []
 json_lines = [json.loads( l.strip() ) for l in open(ifilename,encoding = 'utf8').readlines() ]
-print(" No. of Businesses : ",len(json_lines))
+print(" No. of Businesses/intances : ",len(json_lines))
 print("\n")
+'''
+##############################################################################
+
+### LOAD A FIXED NUMBER OF LINES (flag)
+
+print("\n LOADING \"business.json\" DATA (1 LINE AT A TIME)...\n")
+pbar = tqdm(total=flag)
+
+msg = False
+json_lines = []
+f = open(ifilename,encoding = 'utf8')
+for i in range(1,flag+1):
+    l = f.readline()
+    pbar.update(1)
+    if(i > 174567):
+        msg = True
+        break
+    json_lines.append(json.loads( l.strip()))
+pbar.close()
+
+if msg == True:
+    print(" Overflow, but loading complete.")
+print("\n No. of Businesses loaded         : ",len(json_lines))
+
+
+
 
 OUT_FILE = open(ofilename, "w")
 root = csv.writer(OUT_FILE)
@@ -91,9 +119,6 @@ print('\n Added {0} lines/businesses to csv\n'.format(json_no))
 OUT_FILE.close()
 
 
-elapsed_time = time.time() - start_time
-print(" HH:MM:SS")
-print(time.strftime(" %H:%M:%S", time.gmtime(elapsed_time)))
 
 
 
@@ -309,8 +334,6 @@ def city_vs_reviews():
     ### pprint.pprint(reviews,width=2)
 
 
-start_time = time.time()
-print(" --- START TIME ---\n")
 
 categories_vs_reviews()
 print("\n No. of Restaurants loaded: ",len(restaurants))
@@ -321,7 +344,3 @@ print("\n ======================================================================
 city_vs_reviews()
 
 #city_vs_categories()
-
-elapsed_time = time.time() - start_time
-print("\n HH:MM:SS")
-print(time.strftime(" %H:%M:%S", time.gmtime(elapsed_time)))
