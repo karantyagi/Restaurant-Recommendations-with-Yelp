@@ -4,7 +4,7 @@
 ## TO RUN THE PROGRAM:
 
 # Keep review.json in same directory and run the command:
-# $ python analyze_review.py "review.json"
+# $ python plot_review.py "review.json"
 
 ################################################################################
 '''
@@ -48,32 +48,10 @@ ifilename = sys.argv[1]
 ofilename1 = "reviews_restaurants.csv"
 ofilename2 = "reviews_restaurants_text.csv"
 
-flag = 60000       # No. of lines to be loaded
+flag = 200000       # No. of lines to be loaded
                      # max no. of instances :5261669
 
 ################################################################################
-
-# Function to load all valid restaurant business_ids
-# Valid business-ids are Catergoy :Reastaurants, City : Las Vegas
-
-def load_restrnt(filename):
-    global r
-    with open(filename, newline='\n') as f:
-         reader = csv.reader(f)
-         for row in reader:
-             r.append(row[0])
-    print(" Restaurants (business_ids) Loaded : {}".format(len(r)))
-
-###############################################################################
-
-### LOAD ALL DATA AT ONCE
-
-''' code for complete dataset
-json_lines = [json.loads( l.strip() ) for l in open(ifilename,encoding = 'utf8').readlines() ]
-print(" No. of Reviews: ",len(json_lines))
-print("\n")
-'''
-##############################################################################
 
 ### LOAD A FIXED NUMBER OF LINES (flag)
 
@@ -95,46 +73,16 @@ if msg == True:
     print("\n Overflow, but loading complete.")
 print("\n No. of Reviews loaded            : ",len(json_lines))
 
-## loading valid Business IDs
-load_restrnt("valid_restaurants.csv")
-
 print("\n LOADING COMPLETE.")
 print("__________________________________________________________________________________")
 
 ###############################################################################
-# code to print types of each attribute
-'''
-print("\n --------------------------------")
-print(' business_id     : ',type(json_lines[0]["business_id"]))
-print(' review_id       : ',type(json_lines[0]["review_id"]))
-print(' user_id         : ',type(json_lines[0]["user_id"]))
-print(' text            : ',type(json_lines[0]["text"]))
-print(' stars           : ',type(json_lines[0]["stars"]))
-print(' useful          : ',type(json_lines[0]["useful"]))
-print(' cool            : ',type(json_lines[0]["cool"]))
-print(' funny           : ',type(json_lines[0]["funny"]))
-print(" --------------------------------- \n")
-'''
-###############################################################################
-
-print("\n WRITING PROCESS STARTED...")
-
-os.makedirs(os.path.dirname("output/"+ofilename1), exist_ok=True)
-os.makedirs(os.path.dirname("output/"+ofilename2), exist_ok=True)
-
-OUT_FILE1 = open("output/"+ofilename1, "w")
-root1 = csv.writer(OUT_FILE1)
-root1.writerow(['review_id','business_id','user_id','text','stars'])
-print("\n Column Header added to "+ofilename1)
-
-OUT_FILE2 = open("output/"+ofilename2, "w")
-root2 = csv.writer(OUT_FILE2)
-root2.writerow(['review_id','business_id','user_id','text','stars'])
-print(" Column Header added to "+ofilename2)
+print("\n CALCULATING ... ")
 
 valid_reviews = 0
 valid_small_reviews = 0
 text_length = dict()
+text_rating = dict()
 review_length = []
 print("\n")
 pbar = tqdm(total=flag)
@@ -142,33 +90,14 @@ for l in json_lines:
     review_length.append(len(l['text']))
     if len(l['text']) not in text_length:
         text_length[len(l['text'])] = 1
+        text_rating[len(l['text'])] = l['stars']
     else:
         text_length[len(l['text'])] += 1
-
-    if l['business_id'] in r:
-        root1.writerow([l['review_id'],l['business_id'],l['user_id'],l['text'].encode("utf-8"),l['stars']])
-        #print(" Text length : ",len(l['text']))
-        if len(l['text']) >=100 and len(l['text']) <= 200:
-            #print(" Text length : ",len(l['text']))
-            root2.writerow([l['review_id'],l['business_id'],l['user_id'],l['text'].encode("utf-8"),l['stars']])
-            valid_small_reviews += 1
-        valid_reviews +=1
     pbar.update(1)
 
 pbar.close()
-print("\n")
-print(" No. of Restaurant Reviews in Las Vegas        : ",valid_reviews)
-print(" No. of Restaurant Reviews with length 100-200 : ",valid_small_reviews)
-print(" text_length list created, size : ",len(text_length))
+print("\n CACLULATING COMPLETE.")
 
-OUT_FILE1.close()
-OUT_FILE2.close()
-
-print("\n WRITING COMPLETE.")
-print("__________________________________________________________________________________")
-print("\n OUTPUT : 2 new files\n")
-print(" \"",ofilename1,"\"      : Contains review data subset for Las Vegas")
-print(" \"",ofilename2,"\" : Contains review data subset for Las Vegas with length 100-200")
 print("__________________________________________________________________________________")
 
 #############################################################################
@@ -189,7 +118,73 @@ header = list(df)
 
 top30len = df.sort_values(by=['No. of Reviews'], ascending=False)
 print("\n Top 30 Review Text Lengths (no. of words)\n")
-print(tabulate(top30len.head(100), headers=['Review text length','No. of reviews']))
+print(tabulate(top30len.head(10), headers=['Review text length','No. of reviews']))
 print("\n Total no. of reviews : ",len(review_length))
 print(" Review text lengths   :",len(text_length.keys()))
 print("__________________________________________________________________________________")
+
+# TOP 100 review Text Lengths
+
+dfr = pd.DataFrame(
+{'Length of Review text (words)': list(text_rating.keys()),
+ 'Rating': list(text_rating.values())
+})
+###print(df.shape)
+#pprint.pprint(df,width=3)
+#print(tabulate(df, headers=['States','No. of Reviews'], tablefmt='psql'))
+### print(list(df))
+title = "Frequency of no. of reviews according to states"
+rheader = list(dfr)
+#plot_line(df[str(header[1])],df[str(header[0])],str(header[1]),str(header[0]),title,str(header[0]))
+
+top30 = dfr.sort_values(by=['Rating'], ascending=False)
+print("\n Top 30 Review Text Lengths (no. of words)\n")
+print(tabulate(top30.head(10), headers=['Review text length','Rating']))
+print("__________________________________________________________________________________")
+
+
+###############################################################################
+# PLOTTING GRAPHS
+###############################################################################
+
+'''DISTRIBUTION OF REVIEW TEXT LEHGTH - DENSITY PLOT '''
+
+# style
+plt.style.use('seaborn-darkgrid')
+# density plot with shade
+sns.kdeplot(review_length, shade=True, color="skyblue" )
+# Add legend
+blue_line = mlines.Line2D([], [], color='skyblue', alpha=0.9, linewidth=2, label="Frequency of no. of words in review text")
+plt.legend(loc=1, ncol=5, handles=[blue_line])
+#red_patch = mpatches.Patch(color='red', label="deciding")
+#plt.legend(loc=1, ncol=2, handles=[red_patch])
+# Add titles
+plt.title("Frequency of Review text length", loc='left', fontsize=12, fontweight=0, color='orange')
+plt.xlabel("Review text length (in words)")
+plt.ylabel("Proportion of reviews")
+### <extra code> plt.xticks(df[str(header[0])] , rotation=45 )
+plt.show(block=True)
+
+###############################################################################
+
+'''DISTRIBUTION OF REVIEW TEXT LEHGTH VS NO.OF REVIEWS - CONTOUR DENSITY PLOT '''
+# Plotting density plot for visualizing distribution of review text length v/s rating
+
+# style
+plt.style.use('seaborn-darkgrid')
+# density plot with shade
+sns.regplot(x=df[header[0]], y=df[header[1]], fit_reg=False, scatter_kws={"color":"darkred","alpha":0.7,"s":0.03} )
+#sns.kdeplot(df[header[0]], df[header[1]], cmap="Blues", shade=True, bw=.15)
+# Add legend
+# blue_line = mlines.Line2D([], [], color='skyblue', alpha=0.9, linewidth=2, label="Frequency of no. of words in review text")
+# plt.legend(loc=1, ncol=5, handles=[blue_line])
+#red_patch = mpatches.Patch(color='red', label="deciding")
+#plt.legend(loc=1, ncol=2, handles=[red_patch])
+# Add titles
+plt.title("distribution of review text length v/s rating", loc='left', fontsize=12, fontweight=0, color='orange')
+plt.xlabel("Review text length (in words)")
+plt.ylabel("No. of reviews")
+### <extra code> plt.xticks(df[str(header[0])] , rotation=45 )
+plt.show(block=True)
+
+###############################################################################
