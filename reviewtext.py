@@ -4,7 +4,7 @@
 ## TO RUN THE PROGRAM:
 
 # Keep review.json in same directory and run the command:
-# $ python plot_review.py "review.json"
+# $ python reviewtext "review.json"
 
 ################################################################################
 '''
@@ -43,7 +43,8 @@ import matplotlib.patches as mpatches
 print(" DONE")
 ################################################################################
 
-r = [] # valid restaurant business ids
+r_line = []
+reviews = [] # valid restaurant business ids
 ifilename = sys.argv[1]
 ofilename1 = "reviews_restaurants.csv"
 ofilename2 = "reviews_restaurants_text.csv"
@@ -52,6 +53,21 @@ flag = 500155      # No. of lines to be loaded
                      # max no. of instances :5261669
 
 ################################################################################
+
+################################################################################
+
+# Function to load all valid restaurant business_ids
+# Valid business-ids are Catergoy :Reastaurants, City : Las Vegas
+
+def load_reviews(filename):   ## reviews_restaurants_text file needs to be loaded
+    global r_line
+    with open(filename, newline='\n') as f:
+         reader = csv.reader(f)
+         for row in reader:
+             r.append(row[0])
+    print(" Reviews Loaded (100-300 words) : {}".format(len(r)))
+
+###############################################################################
 
 ### LOAD A FIXED NUMBER OF LINES (flag)
 
@@ -272,9 +288,7 @@ def length_vs_ratings():
 
 ###############################################################################
 '''
-https://python-graph-gallery.com/pie-plot/
-https://python-graph-gallery.com/132-basic-connected-scatterplot/
-https://python-graph-gallery.com/132-basic-connected-scatterplot/
+
 
 # DISTRIBUTION OF RATINGS
 
@@ -303,3 +317,10 @@ ratings2()
 '''
 
 ###############################################################################
+
+
+
+
+
+# https://python-graph-gallery.com/132-basic-connected-scatterplot/
+# https://python-graph-gallery.com/132-basic-connected-scatterplot/
