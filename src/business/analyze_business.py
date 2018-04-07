@@ -22,7 +22,14 @@
   'review_count':           review count,
   'categories':             [(localized category names)]
   'open':                   1/0 (corresponds to permanently closed, not business hours),
-}
+  'attributes':             {"RestaurantsTakeOut": true,
+                                "BusinessParking":
+                                {   "garage": false,
+                                    "street": true,
+                                    "validated": false,
+                                    "lot": false,
+                                    "valet": false }
+                            }
 '''
 ################################################################################
 # Loading necessary libraries
@@ -50,7 +57,7 @@ flag = 174567          # No. of lines to be loaded
                       # max no. of instances : 174567
 
 ifilename = sys.argv[1]
-ofilename = "business_full.csv"
+ofilename = "business_full_all_attr.csv"
 ###############################################################################
 
 ### LOAD ALL DATA AT ONCE
@@ -106,6 +113,8 @@ print(' categories      : ',type(json_lines[0]["categories"]))
 print(' is_open         : ',type(json_lines[0]["is_open"]))
 print("\n -----------------------------------------------")
 '''
+
+print(' attributes         : ',type(json_lines[0]["attributes"]))
 ###############################################################################
 
 print("\n WRITING PROCESS STARTED...")
@@ -114,13 +123,18 @@ os.makedirs(os.path.dirname("output/"+ofilename), exist_ok=True)
 
 OUT_FILE = open("output/"+ofilename, "w")
 root = csv.writer(OUT_FILE)
-root.writerow(['business_id','categories','name', 'city', 'state', 'postal_code', 'latitude', 'longitude', 'stars', 'review_count'])
+root.writerow((['business_id','categories','name', 'city', 'state',
+ 'postal_code', 'latitude', 'longitude', 'stars', 'review_count', 'attributes']))
 print("\n Column Header added to "+ofilename)
 
 pbar = tqdm(total=flag)
 json_no = 0
 for l in json_lines:
- root.writerow([l['business_id'].encode("utf-8"),l['categories'], l['name'].encode("utf-8"), l['city'].encode("utf-8"), l['state'].encode("utf-8"), l['postal_code'].encode("utf-8"), l['latitude'], l['longitude'], l['stars'], l['review_count']])
+ root.writerow(([l['business_id'].encode("utf-8"),l['categories'],
+ l['name'].encode("utf-8"), l['city'].encode("utf-8"),
+ l['state'].encode("utf-8"), l['postal_code'].encode("utf-8"),
+ l['latitude'], l['longitude'], l['stars'], l['review_count'],
+ l['attributes']]))
  pbar.update(1)
  json_no += 1
  if(json_no == flag):
