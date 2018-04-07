@@ -1,3 +1,2 @@
 > Content Based
-
 > Collaborative filtering
