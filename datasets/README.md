@@ -14,12 +14,14 @@ exploratory analysis/reviews analysis/plot_reviews.py
 | reviews_restaurants_text_unbiased_svm.csv | Contains review data subset for Restaurants in Las Vegas with review length 100-200 words, with unbiased(predicted from review text) ratings, using SVM model |
 | reviews_restaurants_text_unbiased_nb.csv | Contains review data subset for Restaurants in Las Vegas with review length 100-200 words, with unbiased(predicted from review text) ratings, using Naive Bayes model |
 
+---
 ### `Yelp Datasets (json format)`
-
 Download `business.json`, `user.json` and `review.json` from https://www.yelp.com/dataset
 
-## `Building remaining datasets`
-#### All datasets can be created using the above yelp datasets by running:
+---
+### `Building remaining datasets`
+
+__All datasets can be created using the above yelp datasets by running:__
 - [`analyze_business.py`](https://github.com/karantyagi/Restaurant-Recommendations-with-Yelp/tree/master/exploratory%20analysis/business%20anaysis/src)
 - [`plot_reviews.py`](https://github.com/karantyagi/Restaurant-Recommendations-with-Yelp/tree/master/exploratory%20analysis/reviews%20analysis)
 
