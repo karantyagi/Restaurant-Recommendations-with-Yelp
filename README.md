@@ -76,6 +76,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-Thanks to our mentor at Northeastern University: 
-[`Professor Sara Arunagiri`](https://www.ccis.northeastern.edu/people/sara-arunagiri/) 
+Thanks to our mentor at Northeastern University:</br> 
+[`Professor Sara Arunagiri`](https://www.ccis.northeastern.edu/people/sara-arunagiri/)</br> 
 in guiding our project development during Spring 2018.
