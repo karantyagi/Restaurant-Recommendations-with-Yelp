@@ -5,20 +5,20 @@ Python code for:
 - converting it to business.json.csv
 - anlayzing and plotting graphs
 
----
+
 Dependencies:
 
 - Download `business.json` from https://www.yelp.com/dataset
 - Keep `business.json` in the same folder as `analyze_business.py` 
 
----
+
 How to run the files:
 
-```python 
+```bash
 $ python analyze_business.py "business.json"
 ```
 
----
+
 Expected Output:
 <\br>
 `output` folder created with the following files:
