@@ -74,8 +74,3 @@ Add additional notes about how to deploy this on a live system
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
-## Acknowledgments
-
-Thanks to our mentor at Northeastern University:</br> 
-[`Professor Sara Arunagiri`](https://www.ccis.northeastern.edu/people/sara-arunagiri/)</br> 
-in guiding our project development during Spring 2018.
