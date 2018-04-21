@@ -1,4 +1,4 @@
-# `Analyzing business dataset`
+# Analyzing business dataset
 
 ## Python code for:
 - loading the business.json dataset
@@ -20,7 +20,6 @@ $ python analyze_business.py "business.json"
 
 
 ## Expected Output:
-<\br>
 `output` folder created with the following files:
 - business-categories-reviews.csv
 - business_full_all_attr.csv
