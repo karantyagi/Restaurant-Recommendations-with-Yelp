@@ -1,5 +1,7 @@
 ## `Dataset Descriptions`
 
+exploratory analysis/reviews analysis/plot_reviews.py
+
 | __Dataset__ | __DESCRIPTION__ |
 | ------ | ------ |
 | business-categories-reviews.csv | Contains 2 columns, categories and reviews in each category |
@@ -14,7 +16,14 @@
 
 
 ---
-
 ### `Yelp Datasets (json format)`
 
 Download `business.json`, `user.json` and `review.json` from https://www.yelp.com/dataset
+
+---
+## `Building remaining datasets`
+### All datasets can be created using the above yelp datasets by running:
+- [`exploratory analysis/business anaysis/src/analyze_business.py`](Restaurant-Recommendations-with-Yelp/exploratory analysis/business anaysis/src/README.md)
+- [`exploratory analysis/reviews analysis/plot_reviews.py`](Restaurant-Recommendations-with-Yelp/exploratory analysis/reviews analysis/README.md)
+
+---
