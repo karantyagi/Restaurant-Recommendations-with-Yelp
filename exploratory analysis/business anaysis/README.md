@@ -11,6 +11,6 @@ Keep the following datasets in the same folder as `Data exploratory analysis.ipy
 --- 
 ### Note
 
-Run `analyze_business.py` in the `src` folder to create the above csv files __or__ find them in the [datasets](https://github.com/karantyagi/Restaurant-Recommendations-with-Yelp/tree/master/datasets)
+Run __`analyze_business.py`__ in the __`src`__ folder to create the above csv files __or__ find them in the [datasets](https://github.com/karantyagi/Restaurant-Recommendations-with-Yelp/tree/master/datasets)
 
 ---
