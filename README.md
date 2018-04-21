@@ -76,8 +76,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-Thank you to UC Davis Mentors:
-
-* [Professor Sara Arunagiri](https://www.ccis.northeastern.edu/people/sara-arunagiri/) 
-* Arpit Rawat 
-<pre> in guiding our project development during the Spring 2018.
+Thanks to our mentor at Northeastern University: 
+[`Professor Sara Arunagiri`](https://www.ccis.northeastern.edu/people/sara-arunagiri/) 
+in guiding our project development during Spring 2018.
