@@ -1,26 +1,25 @@
 # `Analyzing business dataset`
 
 
-<h2>Python code for:</h2>
+### Python code for:
 - loading the business.json dataset
 - converting it to business.json.csv
 - anlayzing and plotting graphs
 
-
-## Dependencies:
+---
+### Dependencies:
 
 - Download `business.json` from https://www.yelp.com/dataset
 - Keep `business.json` in the same folder as `analyze_business.py` 
 
-
-## How to run the files:
+---
+### How to run the files:
 
 ```bash
 $ python analyze_business.py "business.json"
 ```
-
-
-## Expected Output:
+---
+### Expected Output:
 `output` folder created with the following files:
 - business-categories-reviews.csv
 - business_full_all_attr.csv
