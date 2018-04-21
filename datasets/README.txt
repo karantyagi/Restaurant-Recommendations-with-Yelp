@@ -1,27 +1,24 @@
-File Descriptions
-________________________________________________________________________________________________________
 
-valid_restaurants.csv           : Contains business_ids of all Restaurants in Las Vegas
-reviews_restaurants		: Contains review data subset for Restaurants in Las Vegas
-reviews_restaurants_text	: Contains review data subset for Restaurants in Las Vegas with review length 100-200 words
+Dataset Descriptions
+_____________________________________________________________________________________________________________________________________
 
-reviews_restaurants_text_unbiased_svm : Contains review data subset for Restaurants in Las Vegas
-					with review length 100-200 words, with unbiased(predicted from review text)
-					ratings, using SVM model
+valid_restaurants.csv           	  :  Contains business_ids of all Restaurants in Las Vegas
+reviews_restaurants.csv			  :  Contains review data subset for Restaurants in Las Vegas
+reviews_restaurants_text.csv		  :  Contains review data subset for Restaurants in Las Vegas with review length 100-200 words
+reviews_restaurants_text_unbiased_svm.csv :  Contains review data subset for Restaurants in Las Vegas
+					     with review length 100-200 words, with unbiased(predicted from review text)
+					     ratings, using SVM model
+reviews_restaurants_text_unbiased_nb.csv  :  Contains review data subset for Restaurants in Las Vegas
+					     with review length 100-200 words, with unbiased(predicted from review text)
+					     ratings, using Naive Bayes model
+business_full_all_attr.csv		  :  Contains complete business.json dataset with all columns
+business-categories-reviews		  :  Contains 2 columns, categories and reviews in each category
+cities_reviews				  :  Contains 2 columns, city and reviews in each city
+states-reviews				  :  Contains 2 columns, state and reviews in each state
 
-reviews_restaurants_text_unbiased_nb :  Contains review data subset for Restaurants in Las Vegas
-					with review length 100-200 words, with unbiased(predicted from review text)
-					ratings, using Naive Bayes model
+______________________________________________________________________________________________________________________________________
 
-business_full.csv		: Contains complete business.json dataset except "attributes column"
-business_full_all_attr.csv	: Contains complete business.json dataset with all columns
-business-categories-reviews	: Contains 2 columns, categories and reviews in each category
-cities_reviews			: Contains 2 columns, city and reviews in each city
-states-reviews			: Contains 2 columns, state and reviews in each state
-
-_________________________________________________________________________________________________________
-
-business_full_all_attr.csv : DESCRIPTION
+business_full_all_attr.csv : DESCRIPTION (with example)
 
 {
     // string, 22 character unique string business id
