@@ -1,6 +1,7 @@
-# Analyzing business dataset
+# `Analyzing business dataset`
 
-## Python code for:
+
+<h2>Python code for:</h2>
 - loading the business.json dataset
 - converting it to business.json.csv
 - anlayzing and plotting graphs
