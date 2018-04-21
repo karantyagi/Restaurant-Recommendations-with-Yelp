@@ -1,11 +1,11 @@
-## `Running the Test`
+# `Running Tests`
 
-'''python
-
-
-'''
-
+```bash
+$ python check_valid_restaurants.py "valid_restaurants.csv"
+```
 
 ---
+### Dependencies:
 
-How to run the files:
+- Keep `valid_restaurants.csv` in the same folder
+
