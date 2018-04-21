@@ -67,8 +67,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributors
 
-- Shraddha Shah |  shah.shrad@husky.neu.edu    |  linkedin
--	Karan Tyagi   |  tyagi.k@husky.neu.edu       |  linkedin
+- [Shraddha Shah](https://www.linkedin.com/in/shraddha4392/) |  shah.shrad@husky.neu.edu  
+-	[Karan Tyagi](https://www.linkedin.com/in/karantyagi-21/)  |  tyagi.k@husky.neu.edu       |  
 
 ## License
 
