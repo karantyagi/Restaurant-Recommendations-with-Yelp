@@ -1,4 +1,4 @@
-# Yelp Restaurant Recommendation System  (Don't model it as a course project)
+# Yelp Restaurant Recommendation System
 
 > __Recommend new restaurants to Yelp users based on reviews and rating of other Yelp users__
 
