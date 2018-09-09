@@ -2,7 +2,7 @@
 
 > __Recommend new restaurants to Yelp users based on reviews and rating of other Yelp users__
 
-Suggests new restaurants to Yelp users, based oon the star ratings of other Yelp users.
+Suggests new restaurants to Yelp users, based on the star ratings of other Yelp users.
 (who have reviewed similar or the same restaurants as the user - collaborative filtering model)
 
 ## Contributors
